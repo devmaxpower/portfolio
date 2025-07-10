@@ -1,34 +1,46 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  //handle click
+  //const [entrar, setEntrar] = useState(false);
+  const [moverBox1, setMoverBox1] = useState({});
+  const [moverBox2, setMoverBox2] = useState({});
+  const [hiddeBtn, setHiddeBtn] = useState({});
+  const [showPresentacion, setpresentacion] = useState({});
+  //get click
+  const getClick = (e)=>{
+    e.preventDefault();
+
+    setMoverBox1({
+      top: "-100%",
+      left: "-100%",
+      transform: "translate(-50%, -50%)"
+    })
+    setMoverBox2({
+      right: "-100%",
+      bottom: "-100%"
+    })
+    setHiddeBtn({
+      opacity: 0,
+      color: "#000"
+    })
+    setTimeout(()=>{
+      setpresentacion({
+        display: "none"
+      })
+
+    }, 1000)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main>
+      <section id='presentacion' style={showPresentacion} >
+        
+        <div style={moverBox1} className="box"></div>
+        <div style={moverBox2} className="box"></div>
+        <a style={hiddeBtn} href="#" className="entrar" onClick={getClick}>Entrar</a>
+      </section>
+    </main>
   )
 }
 
